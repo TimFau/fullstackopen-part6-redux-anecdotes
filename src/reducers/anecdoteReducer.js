@@ -22,8 +22,24 @@ const initialState = anecdotesAtStart.map(asObject)
 const reducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
+  let newState = [...state]
+  if (action.type === 'INCREMENT_VOTE') {
+    newState = newState.map((anecdote) => {
+      if (anecdote.id === action.payload.id) {
+        return { ...anecdote, votes: anecdote.votes + 1 }
+      }
+      return anecdote
+    })
+  }
+  console.log('state after:', newState)
+  return newState
+}
 
-  return state
+export const incrementVoteOf = (id) => {
+  return {
+    type: 'INCREMENT_VOTE',
+    payload: { id }
+  }
 }
 
 export default reducer
