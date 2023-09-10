@@ -3,11 +3,14 @@ import Anecdote from './Anecdote'
 
 const Anecdotes = () => {
   const anecdotes = useSelector(state => state)
+  const sortedAnecdotes = anecdotes.toSorted((a, b) => {
+    return b.votes - a.votes
+  })
 
   return (
     <>
     <h2>Anecdotes</h2>
-    {anecdotes.map(anecdote =>
+    {sortedAnecdotes.map(anecdote =>
         <Anecdote
             key={anecdote.id}
             id={anecdote.id}
