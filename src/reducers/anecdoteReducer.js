@@ -31,6 +31,11 @@ const reducer = (state = initialState, action) => {
       return anecdote
     })
   }
+  if (action.type === 'NEW_ANECDOTE') {
+    console.log('NEW_ANECDOTE', action)
+    const newAnecdote = asObject(action.payload.anecdote)
+    newState.push(newAnecdote)
+  }
   console.log('state after:', newState)
   return newState
 }
@@ -39,6 +44,14 @@ export const incrementVoteOf = (id) => {
   return {
     type: 'INCREMENT_VOTE',
     payload: { id }
+  }
+}
+
+export const newAnecdote = (anecdote) => {
+  console.log('newAnecdote', anecdote)
+  return {
+    type: 'NEW_ANECDOTE',
+    payload: { anecdote }
   }
 }
 
