@@ -14,6 +14,7 @@ const AnecdoteList = () => {
   const sortedAnecdotes = anecdotes.toSorted((a, b) => {
     return b.votes - a.votes
   })
+  // console.log('sortedAnecdotes', sortedAnecdotes)
 
   return (
     <>
