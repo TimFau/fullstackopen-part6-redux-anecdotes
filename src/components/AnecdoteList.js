@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux'
 import Anecdote from './Anecdote'
+import Notification from './Notification'
 
 const AnecdoteList = () => {
+  const notification = useSelector(state => state.notification)
   const anecdotes = useSelector(state => {
     // console.log('anecdotes state', state)
     if (state.filter.length > 0) {
@@ -16,6 +18,7 @@ const AnecdoteList = () => {
   return (
     <>
     <h2>Anecdotes</h2>
+    {notification.length > 0 && <Notification />}
     {sortedAnecdotes.map(anecdote =>
         <Anecdote
             key={anecdote.id}
